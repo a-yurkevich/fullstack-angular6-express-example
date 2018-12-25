@@ -5,8 +5,8 @@ import {OrderPosition} from "../shared/interfaces";
 @Injectable()
 export class OrderService {
 
-  public list: OrderPosition[] = []
-  public price = 0
+  public list: OrderPosition[] = [];
+  public price = 0;
 
   add(position: Position) {
     const orderPosition: OrderPosition = Object.assign({}, {
@@ -14,9 +14,9 @@ export class OrderService {
       cost: position.cost,
       quantity: position.quantity,
       _id: position._id
-    })
+    });
 
-    const candidate = this.list.find(p => p._id === orderPosition._id)
+    const candidate = this.list.find(p => p._id === orderPosition._id);
     if (candidate) {
       candidate.quantity += orderPosition.quantity
     } else {
@@ -27,13 +27,13 @@ export class OrderService {
   }
 
   remove(orderPosition: OrderPosition) {
-    const idx = this.list.findIndex(p => p._id === orderPosition._id)
-    this.list.splice(idx,1)
-    this.computePrice()
+    const idx = this.list.findIndex(p => p._id === orderPosition._id);
+    this.list.splice(idx, 1);
+    this.computePrice();
   }
 
   clear() {
-    this.list = []
+    this.list = [];
     this.price = 0
   }
 

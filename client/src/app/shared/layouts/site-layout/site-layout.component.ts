@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 import {MaterialService} from "../../classes/material.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {MaterialService} from "../../classes/material.service";
 })
 export class SiteLayoutComponent implements AfterViewInit {
 
-  @ViewChild('floating') floatingRef: ElementRef
+  @ViewChild('floating') floatingRef: ElementRef;
 
   links = [
     {url: '/overview', name: 'Обзор'},
@@ -18,7 +18,7 @@ export class SiteLayoutComponent implements AfterViewInit {
     {url: '/history', name: 'История'},
     {url: '/order', name: 'Добавить заказ'},
     {url: '/categories', name: 'Ассортимент'}
-  ]
+  ];
 
   constructor(private auth: AuthService, private router: Router) {
   }
@@ -29,8 +29,8 @@ export class SiteLayoutComponent implements AfterViewInit {
 
   logout(event: Event) {
     event.preventDefault();
-    this.auth.logout()
-    this.router.navigate(['login'])
+    this.auth.logout();
+    this.router.navigate(['login']);
   }
 
 }

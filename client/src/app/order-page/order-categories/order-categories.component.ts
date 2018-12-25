@@ -10,12 +10,12 @@ import {Category} from "../../shared/interfaces";
 })
 export class OrderCategoriesComponent implements OnInit {
 
-  categories$: Observable<Category[]>
+  categories$: Observable<Category[]>;
 
   constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-    this.categories$ = this.categoriesService.fetch()
+    this.categories$ = this.categoriesService.fetch();
   }
 
 }

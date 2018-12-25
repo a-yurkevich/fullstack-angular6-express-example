@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
-import {PositionsService} from "../../shared/services/positions.service";
 import {Observable} from "rxjs/index";
-import {Position} from "../../shared/interfaces";
 import {switchMap, map} from "rxjs/operators";
+import {PositionsService} from "../../shared/services/positions.service";
+import {Position} from "../../shared/interfaces";
 import {OrderService} from "../order.service";
 import {MaterialService} from "../../shared/classes/material.service";
 
@@ -14,11 +14,12 @@ import {MaterialService} from "../../shared/classes/material.service";
 })
 export class OrderPositionsComponent implements OnInit {
 
-  positions$: Observable<Position[]>
+  positions$: Observable<Position[]>;
 
   constructor(private route: ActivatedRoute,
               private positionsService: PositionsService,
-              private order: OrderService) { }
+              private order: OrderService) {
+  }
 
   ngOnInit() {
     this.positions$ = this.route.params.pipe(
@@ -30,8 +31,8 @@ export class OrderPositionsComponent implements OnInit {
       map(
         (positions: Position[]) => {
           return positions.map(position => {
-            position.quantity = 1
-            return position
+            position.quantity = 1;
+            return position;
           })
         }
       )
@@ -39,7 +40,7 @@ export class OrderPositionsComponent implements OnInit {
   }
 
   addToOrder(position: Position) {
-    MaterialService.toast(`Добавлено х${position.quantity}`)
+    MaterialService.toast(`Добавлено х${position.quantity}`);
     this.order.add(position)
   }
 

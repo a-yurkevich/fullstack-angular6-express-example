@@ -8,18 +8,18 @@ import {MaterialInstance, MaterialService} from "../../shared/classes/material.s
   styleUrls: ['./history-list.component.css']
 })
 export class HistoryListComponent implements OnDestroy, AfterViewInit {
-  @Input() orders: Order[]
-  @ViewChild('modal') modalRef: ElementRef
+  @Input() orders: Order[];
+  @ViewChild('modal') modalRef: ElementRef;
 
-  selectedOrder: Order
-  modal: MaterialInstance
+  selectedOrder: Order;
+  modal: MaterialInstance;
 
   ngOnDestroy() {
     this.modal.destroy()
   }
 
   ngAfterViewInit() {
-    this.modal = MaterialService.initModal(this.modalRef)
+    this.modal = MaterialService.initModal(this.modalRef);
   }
 
 
@@ -30,12 +30,12 @@ export class HistoryListComponent implements OnDestroy, AfterViewInit {
   }
 
   selectOrder(order: Order) {
-    this.selectedOrder = order
-    this.modal.open()
+    this.selectedOrder = order;
+    this.modal.open();
   }
 
   closeModal() {
-    this.modal.close()
+    this.modal.close();
   }
 
 }

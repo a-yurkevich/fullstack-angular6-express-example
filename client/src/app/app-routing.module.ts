@@ -17,24 +17,26 @@ import {OrderPositionsComponent} from "./order-page/order-positions/order-positi
 const routes: Routes = [
   {
     path: '', component: AuthLayoutComponent, children: [
-      {path: '', redirectTo: '/login', pathMatch: 'full'},
-      {path: 'login', component: LoginPageComponent},
-      {path: 'register', component: RegisterPageComponent}
-    ]
+    {path: '', redirectTo: '/login', pathMatch: 'full'},
+    {path: 'login', component: LoginPageComponent},
+    {path: 'register', component: RegisterPageComponent}
+  ]
   },
   {
     path: '', component: SiteLayoutComponent, canActivate: [AuthGuard], children: [
-      {path: 'overview', component: OverviewPageComponent},
-      {path: 'analytics', component: AnalyticsPageComponent},
-      {path: 'history', component: HistoryPageComponent},
-      {path: 'order', component: OrderPageComponent, children: [
-        {path: '', component: OrderCategoriesComponent},
-        {path: ':id', component: OrderPositionsComponent}
-      ]},
-      {path: 'categories', component: CategoriesPageComponent},
-      {path: 'categories/new', component: CategoriesFormComponent},
-      {path: 'categories/:id', component: CategoriesFormComponent},
+    {path: 'overview', component: OverviewPageComponent},
+    {path: 'analytics', component: AnalyticsPageComponent},
+    {path: 'history', component: HistoryPageComponent},
+    {
+      path: 'order', component: OrderPageComponent, children: [
+      {path: '', component: OrderCategoriesComponent},
+      {path: ':id', component: OrderPositionsComponent}
     ]
+    },
+    {path: 'categories', component: CategoriesPageComponent},
+    {path: 'categories/new', component: CategoriesFormComponent},
+    {path: 'categories/:id', component: CategoriesFormComponent},
+  ]
   }
 ];
 

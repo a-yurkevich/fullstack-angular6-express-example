@@ -13,22 +13,22 @@ const STEP = 2
 })
 export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('tooltip') tooltipRef: ElementRef
-  tooltip: MaterialInstance
-  oSub: Subscription
-  isFilterVisible = false
-  orders: Order[] = []
-  filter: Filter = {}
-  offset = 0
-  limit = STEP
-  loading = false
-  reloading = false
-  noMoreOrders = false
+  @ViewChild('tooltip') tooltipRef: ElementRef;
+  tooltip: MaterialInstance;
+  oSub: Subscription;
+  isFilterVisible = false;
+  orders: Order[] = [];
+  filter: Filter = {};
+  offset = 0;
+  limit = STEP;
+  loading = false;
+  reloading = false;
+  noMoreOrders = false;
 
   constructor(private ordersService: OrdersService) { }
 
   ngOnInit() {
-    this.reloading = true
+    this.reloading = true;
     this.fetch()
   }
 
@@ -36,25 +36,25 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
     const params = Object.assign({}, this.filter, {
       offset: this.offset,
       limit: this.limit
-    })
+    });
 
     this.oSub = this.ordersService.fetch(params).subscribe(orders => {
-      this.orders = this.orders.concat(orders)
-      this.noMoreOrders = orders.length < STEP
-      this.loading = false
-      this.reloading = false
+      this.orders = this.orders.concat(orders);
+      this.noMoreOrders = orders.length < STEP;
+      this.loading = false;
+      this.reloading = false;
     })
   }
 
   loadMore() {
-    this.offset += STEP
-    this.loading = true
-    this.fetch()
+    this.offset += STEP;
+    this.loading = true;
+    this.fetch();
   }
 
   ngOnDestroy() {
-    this.tooltip.destroy()
-    this.oSub.unsubscribe()
+    this.tooltip.destroy();
+    this.oSub.unsubscribe();
   }
 
   ngAfterViewInit() {
@@ -62,11 +62,11 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   applyFilter(filter: Filter) {
-    this.orders = []
-    this.offset = 0
-    this.filter = filter
-    this.reloading = true
-    this.fetch()
+    this.orders = [];
+    this.offset = 0;
+    this.filter = filter;
+    this.reloading = true;
+    this.fetch();
   }
 
   isFiltered(): boolean {

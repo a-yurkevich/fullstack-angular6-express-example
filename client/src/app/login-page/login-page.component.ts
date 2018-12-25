@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../shared/services/auth.service";
 import {Subscription} from "rxjs";
+import {AuthService} from "../shared/services/auth.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {MaterialService} from "../shared/classes/material.service";
 
@@ -12,8 +12,8 @@ import {MaterialService} from "../shared/classes/material.service";
 })
 export class LoginPageComponent implements OnInit, OnDestroy {
 
-  form: FormGroup
-  aSub: Subscription
+  form: FormGroup;
+  aSub: Subscription;
 
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) {
   }
@@ -28,16 +28,16 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-    })
+    });
 
     this.route.queryParams.subscribe((params: Params) => {
       console.log(params);
       if (params['registered']) {
-        MaterialService.toast('Теперь вы можете зайти в систему используя свои данные')
+        MaterialService.toast('Теперь вы можете зайти в систему используя свои данные');
       } else if (params['accessDenied']) {
-        MaterialService.toast('Для начала авторизуйтесь в системе')
+        MaterialService.toast('Для начала авторизуйтесь в системе');
       } else if (params['sessionFailed']) {
-        MaterialService.toast('Пожалуйста войдите в систему заново')
+        MaterialService.toast('Пожалуйста войдите в систему заново');
       }
     })
   }
@@ -48,13 +48,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     //   password: this.form.value.password
     // }
     // this.auth.login(user); // или
-    this.form.disable()
+    this.form.disable();
     this.aSub = this.auth.login(this.form.value).subscribe(
       () => {
-        this.router.navigate(['/overview'])
+        this.router.navigate(['/overview']);
       },
       error => {
-        MaterialService.toast(error.error.message)
+        MaterialService.toast(error.error.message);
         this.form.enable()
       }
     );

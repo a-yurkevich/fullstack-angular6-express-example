@@ -8,28 +8,28 @@ import {MaterialDatepicker, MaterialService} from "../../shared/classes/material
   styleUrls: ['./history-filter.component.css']
 })
 export class HistoryFilterComponent implements OnDestroy, AfterViewInit {
-  @Output() onFilter = new EventEmitter<Filter>()
-  @ViewChild('start') startRef: ElementRef
-  @ViewChild('end') endRef: ElementRef
-  order: number
-  start: MaterialDatepicker
-  end: MaterialDatepicker
+  @Output() onFilter = new EventEmitter<Filter>();
+  @ViewChild('start') startRef: ElementRef;
+  @ViewChild('end') endRef: ElementRef;
+  order: number;
+  start: MaterialDatepicker;
+  end: MaterialDatepicker;
 
-  isValid = true
+  isValid = true;
 
   ngOnDestroy() {
-    this.start.destroy()
-    this.end.destroy()
+    this.start.destroy();
+    this.end.destroy();
   }
 
   ngAfterViewInit() {
-    this.start = MaterialService.initDatepicker(this.startRef, this.validate.bind(this))
-    this.end = MaterialService.initDatepicker(this.endRef, this.validate.bind(this))
+    this.start = MaterialService.initDatepicker(this.startRef, this.validate.bind(this));
+    this.end = MaterialService.initDatepicker(this.endRef, this.validate.bind(this));
   }
 
   validate() {
     if (!this.start.date || !this.end.date) {
-      this.isValid = true
+      this.isValid = true;
       return
     }
 
@@ -37,7 +37,7 @@ export class HistoryFilterComponent implements OnDestroy, AfterViewInit {
   }
 
   submitFilter() {
-    const filter: Filter = {}
+    const filter: Filter = {};
 
     if (this.order) {
       filter.order = this.order

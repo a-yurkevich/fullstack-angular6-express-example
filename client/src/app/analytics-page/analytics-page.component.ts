@@ -32,7 +32,7 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
     };
 
     this.aSub = this.service.getAnalytics().subscribe((data: AnalyticsPage) => {
-      this.average = data.average
+      this.average = data.average;
       gainConfig.labels = data.chart.map(item => item.label);
       gainConfig.data = data.chart.map(item => item.gain);
 
@@ -53,7 +53,7 @@ export class AnalyticsPageComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.aSub) {
-      this.aSub.unsubscribe()
+      this.aSub.unsubscribe();
     }
   }
 
